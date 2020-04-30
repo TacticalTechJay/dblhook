@@ -1,0 +1,19 @@
+{
+    "port": 6969,
+    "path": "/",
+    "db": {
+        "type": "mysql",
+        "host": "localhost",
+        "user": "jay",
+        "password": "abcd0987",
+        "database": "database"
+    },
+    "webhook": {
+        "use": true,
+        "url": "WebhookURL"
+    },
+    "authentication": {
+        "bot": "Your Discord Bot Token",
+        "dbl": "The password for DBL's webhook."
+    }
+}
