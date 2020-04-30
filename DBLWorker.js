@@ -52,9 +52,9 @@ module.exports = class DBLWorker extends EventEmitter {
                 headers: { 'Authorization': `Bot ${this.op.authentication.bot}`}
             }).json()
             if (this.op.webhook.use) return new DBLWorkerWebhookClient(this.op.webhook.url).send({
-                    content: "b",
-                    username: "b"
-                });
+                content: `${user ? `${user.username}#${user.discriminator}(${user.id})` : req.body.user} has voted! Yay! :D`,
+                username: "Top.gg Upvotes"
+            });
         });
 
         this.app.get(`*`, (req, res) => {

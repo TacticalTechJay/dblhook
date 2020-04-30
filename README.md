@@ -9,4 +9,5 @@ Using this is fairly, all you need is node, npm, a db that works with TypeORM, a
 1. Run `npm install`
 2. Have an actual database running and used by your own bot.
 3. Edit config.example.json in a way that fits and rename it to config.json.
-4. Run `node index.js`
+4. Change user.example.js however you'd like just not too much to break everything. Rename user.example.js to user.js
+5. Run `node index.js`
