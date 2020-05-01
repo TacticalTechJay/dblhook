@@ -44,7 +44,7 @@ v13.13.0
 Run the following command in order to get PostgreSQL drivers
 
 ```sh
-npm i pg --save-dev
+npm i pg --save
 ```
 
 #### Getting CockroachDB Drivers
@@ -52,7 +52,7 @@ npm i pg --save-dev
 Run the following command in order to get CockroachDB drivers
 
 ```sh
-npm i cockroachdb --save-dev
+npm i cockroachdb --save
 ```
 
 #### Getting MySQL Drivers
@@ -60,7 +60,7 @@ npm i cockroachdb --save-dev
 Run the following command in order to get MySQL drivers
 
 ```sh
-npm i mysql --save-dev
+npm i mysql --save
 ```
 
 #### Getting MariaDB Drivers
@@ -68,7 +68,7 @@ npm i mysql --save-dev
 Run the following command in order to get MariaDB drivers
 
 ```sh
-npm i mariadb --save-dev
+npm i mariadb --save
 ```
 
 #### Getting Microsoft SQL Drivers
@@ -76,7 +76,7 @@ npm i mariadb --save-dev
 Run the following command in order to get Microsoft SQL drivers
 
 ```sh
-npm i mssql --save-dev
+npm i mssql --save
 ```
 
 ## Updating DBLHook
