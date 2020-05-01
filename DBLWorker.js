@@ -30,9 +30,9 @@ module.exports = class DBLWorker {
                 await this.orm.repos.user.save(user);
             }, 43200000)
             if (req.type == 'test') {
-                if (this.authentication.bot && this.webhook.use) var us = await (await fetch(`https://discordapp.com/api/v6/users/${user}`), {
+                if (this.authentication.bot && this.webhook.use) var us = await (await fetch(`https://discordapp.com/api/v6/users/${user}`, {
                     headers: { 'Authorization': `Bot ${this.authentication.bot}`}
-                }).json()
+                })).json()
                 if (this.webhook.use) return new DBLWorkerWebhookClient(this.webhook.url).send({
                     content: `${us ? `${us.username}#${us.discriminator}(${us.id})` : req.body.user} has voted! Yay! :D`,
                     username: "Top.gg Upvotes (Test)"
