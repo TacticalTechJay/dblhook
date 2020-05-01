@@ -37,7 +37,6 @@ module.exports = class DBLWorker {
                     content: `${us ? `${us.username}#${us.discriminator}(${us.id})` : req.body.user} has voted! Yay! :D`,
                     username: "Top.gg Upvotes (Test)"
                 });
-    
             }
             const user = await require('./util/getUser.js')(this, req.body.user);
             user.voted = true;
