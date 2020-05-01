@@ -1,4 +1,5 @@
 const fetch = require('node-fetch');
+const { URLSearchParams } = require('url');
 
 module.exports = class DBLWorkerWebhookClient {
     constructor(url = null, token = null) {
@@ -9,9 +10,12 @@ module.exports = class DBLWorkerWebhookClient {
     }
     async send(content = null) {
         if (!content) throw new Error('DBLWorkingWebhookClientError: No content was provided.');
+        const params = new URLSearchParams()
+            .append('content', content.content)
+            .append('username', content.username);
         const res = await fetch(`https://discordapp.com/api/webhooks/${this.id}/${this.token}`, {
             method: 'POST',
-            body: JSON.stringify(content),
+            body: params,
             headers: {
                 'Content-Type' : 'application/json'
             }
