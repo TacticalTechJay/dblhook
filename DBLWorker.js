@@ -42,9 +42,9 @@ module.exports = class DBLWorker {
             const user = await require('./util/getUser.js')(this, req.body.user);
             user.voted = true;
             await this.orm.repos.user.save(user);
-            if (this.authentication.bot && this.webhook.use) var us = await (await fetch(`https://discordapp.com/api/v6/users/${user}`), {
+            if (this.authentication.bot && this.webhook.use) var us = await (await fetch(`https://discordapp.com/api/v6/users/${user}`, {
                 headers: { 'Authorization': `Bot ${this.authentication.bot}`}
-            }).json()
+            })).json()
             if (this.webhook.use) return new DBLWorkerWebhookClient(this.webhook.url).send({
                 content: `${user ? `${user.username}#${user.discriminator}(${user.id})` : req.body.user} has voted! Yay! :D`,
                 username: "Top.gg Upvotes"
