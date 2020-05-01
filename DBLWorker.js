@@ -24,7 +24,7 @@ module.exports = class DBLWorker {
         this.app.post(this.host.path, async (req, res) => {
             if (req.get('Authorization') !== this.authentication.dbl) return res.sendStatus(403);
             setTimeout(async () => {
-                if (req.type == 'test') return;
+                if (req.body.type == 'test') return;
                 const user = await require('./util/getUser.js')(this, req.body.user);
                 user.premium.voter = false;
                 await this.orm.repos.user.save(user);
