@@ -1,6 +1,4 @@
 const op = require('./config.json');
 const DBLWorker = require('./DBLWorker');
 
-module.exports = DBLWorker;
-
-new DBLWorker(op.port, op.path, op.options);
+new DBLWorker(op.host, op.db, op.webhook, op.authentication);
