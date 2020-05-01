@@ -17,6 +17,8 @@ module.exports = class DBLWorkerWebhookClient {
             }
         });
         console.log(res);
+        const res2 = await res.json();
+        console.log(res2);
         return res2;
     }
     static parseWebhook(text) {
