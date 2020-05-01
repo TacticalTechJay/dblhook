@@ -10,6 +10,7 @@ module.exports = class DBLWorkerWebhookClient {
     async send(content = null) {
         if (!content) throw new Error('DBLWorkingWebhookClientError: No content was provided.');
         const res = await fetch(`https://discordapp.com/api/webhooks/${this.id}/${this.token}`, {
+            type: 'POST',
             body: JSON.stringify(content)
         });
         return await res.json();
