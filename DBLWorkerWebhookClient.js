@@ -1,5 +1,4 @@
 const fetch = require('node-fetch');
-const { URLSearchParams } = require('url');
 
 module.exports = class DBLWorkerWebhookClient {
     constructor(url = null, token = null) {
