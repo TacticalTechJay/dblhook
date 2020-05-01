@@ -34,7 +34,7 @@ module.exports = class DBLWorker {
                     headers: { 'Authorization': `Bot ${this.authentication.bot}`}
                 })).json();
                 if (this.webhook.use) return new DBLWorkerWebhookClient(this.webhook.url).send({
-                    content: `${us ? `${us.username}#${us.discriminator}(${us.id})` : req.body.user} has voted! Yay! :D`,
+                    content: `${us ? `${us.username}#${us.discriminator} (${us.id})` : req.body.user} has voted! Yay! :D`,
                     username: "Top.gg Upvotes (Test)"
                 });
             }
@@ -45,7 +45,7 @@ module.exports = class DBLWorker {
                 headers: { 'Authorization': `Bot ${this.authentication.bot}`}
             })).json();
             if (this.webhook.use) return new DBLWorkerWebhookClient(this.webhook.url).send({
-                content: `${us ? `${us.username}#${us.discriminator}(${us.id})` : req.body.user} has voted! Yay! :D`,
+                content: `${us ? `${us.username}#${us.discriminator} (${us.id})` : req.body.user} has voted! Yay! :D`,
                 username: "Top.gg Upvotes"
             });
         });
