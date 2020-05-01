@@ -5,30 +5,10 @@ const DBLWorkerWebhookClient = require('./DBLWorkerWebhookClient.js');
 const { createConnection, EntitySchema } = require('typeorm');
 
 module.exports = class DBLWorker {
-    constructor(host = {
-            port: 8080,
-            path: '/'
-        },
-        db = {
-            type: null,
-            host: null,
-            username: null,
-            password: null,
-            database: null,
-        },
-        webhook = {
-            use: false,
-            url: null
-        },
-        authentication = {
-            bot: null,
-            dbl: null
-        }
-    ) {
-        super();
-        for (const k of Object.keys(op.db)) if (!op.db[k]) throw new Error(`DBLWorkerError: options.db.${k} is undefined`);
-        for (const k of Object.keys(op.authentication)) if (!op.authentication[k]) throw new Error(`DBLWorkerError: options.authentication.${k} is undefined`);
-        if (op.webhook.use && !op.webhook.url) throw new Error(`DBLWorkerError: options.webhook.url is undefined`);
+    constructor(host = { port: 8080, path: '/' }, db = { type: null, host: null, username: null, password: null, database: null }, webhook = { use: false, url: null }, authentication = { bot: null, dbl: null }) {
+        for (const k of Object.keys(db)) if (!db[k]) throw new Error(`DBLWorkerError: options.db.${k} is undefined`);
+        for (const k of Object.keys(authentication)) if (!authentication[k]) throw new Error(`DBLWorkerError: options.authentication.${k} is undefined`);
+        if (webhook.use && !webhook.url) throw new Error(`DBLWorkerError: options.webhook.url is undefined`);
 
         this.app = express();
         this.app.use(bodyParser.json());
@@ -52,7 +32,7 @@ module.exports = class DBLWorker {
             user.voted = true;
             await this.orm.repos.user.save(user);
             if (this.authentication.bot && this.webhook.use) var us = await (await fetch(`https://discordapp.com/api/v6/users/${user}`), {
-                headers: { 'Authorization': `Bot ${this.op.authentication.bot}`}
+                headers: { 'Authorization': `Bot ${this.authentication.bot}`}
             }).json()
             if (this.webhook.use) return new DBLWorkerWebhookClient(this.webhook.url).send({
                 content: `${user ? `${user.username}#${user.discriminator}(${user.id})` : req.body.user} has voted! Yay! :D`,
