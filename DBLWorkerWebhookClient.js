@@ -20,7 +20,7 @@ module.exports = class DBLWorkerWebhookClient {
                 'Content-Type' : 'application/json'
             }
         });
-        return await res.json();
+        return console.log((await res.json()));
     }
     static parseWebhook(text) {
         const m = text.match(/^https:\/\/(?:(?:canary|ptb).)?discordapp.com\/api\/webhooks\/(\d+)\/([\w-]+)\/?$/);
