@@ -11,9 +11,14 @@ module.exports = class DBLWorkerWebhookClient {
         if (!content) throw new Error('DBLWorkingWebhookClientError: No content was provided.');
         const res = await fetch(`https://discordapp.com/api/webhooks/${this.id}/${this.token}`, {
             method: 'POST',
-            body: JSON.stringify(content)
+            body: JSON.stringify(content),
+            headers: {
+                'Content-Type' : 'application/json'
+            }
         });
-        return await res.json();
+        const res2 = await res.json();
+        console.log(res2);
+        return res2;
     }
     static parseWebhook(text) {
         const m = text.match(/^https:\/\/(?:(?:canary|ptb).)?discordapp.com\/api\/webhooks\/(\d+)\/([\w-]+)\/?$/);
