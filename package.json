@@ -2,6 +2,9 @@
   "name": "dblhook",
   "version": "0.0.1",
   "description": "A dbl webhook, anything else?",
+  "repository": {
+    "url": "https://github.com/TacticalTechJay/dblhook"
+  },
   "main": "index.js",
   "scripts": {
     "run": "node index.js"

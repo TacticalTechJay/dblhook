@@ -5,9 +5,12 @@ module.exports = {
             primary: true,
             type: 'text'
         },
-        voted: {
-            type: 'boolean',
-            default: false
+        premium: {
+            type: 'simple-json',
+            default: {
+                donator: false,
+                voter: false
+            }
         }
     }
 }
