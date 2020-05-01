@@ -149,6 +149,7 @@ Every single configuration option will be listed here
 ## Example Config
 
 ```json
+// config.json
 {
     "host": {
         "post": 6969,
