@@ -173,6 +173,8 @@ Every single configuration option will be listed here
 }
 ```
 
+### ***Before you run this, rename utils/user.example.js to utils/user.js***
+
 ### Running The Webhook
 
 Get this webhook started by running the following command.
