@@ -174,7 +174,7 @@ Every single configuration option will be listed here
 }
 ```
 
-### ***Before you run this, rename utils/user.example.js to utils/user.js***
+### ***Before you run this, rename utils/user.example.js to utils/User.js***
 
 ### Running The Webhook
 
