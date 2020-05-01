@@ -26,10 +26,10 @@ module.exports = class DBLWorker {
             setTimeout(async () => {
                 if (req.type == 'test') return;
                 const user = await require('./util/getUser.js')(this, req.body.user);
-                user.premium.voted = false;
+                user.premium.voter = false;
                 await this.orm.repos.user.save(user);
             }, 43200000)
-            if (req.type == 'test') {
+            if (req.body.type == 'test') {
                 if (this.authentication.bot && this.webhook.use) var us = await (await fetch(`https://discordapp.com/api/v6/users/${req.body.user}`, {
                     headers: { 'Authorization': `Bot ${this.authentication.bot}`}
                 })).json();
@@ -39,7 +39,7 @@ module.exports = class DBLWorker {
                 });
             }
             const user = await require('./util/getUser.js')(this, req.body.user);
-            user.premium.voted = true;
+            user.premium.voter = true;
             await this.orm.repos.user.save(user);
             if (this.authentication.bot && this.webhook.use) var us = await (await fetch(`https://discordapp.com/api/v6/users/${req.body.user}`, {
                 headers: { 'Authorization': `Bot ${this.authentication.bot}`}
