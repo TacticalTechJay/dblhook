@@ -9,15 +9,14 @@ module.exports = class DBLWorkerWebhookClient {
     }
     async send(content = null) {
         if (!content) throw new Error('DBLWorkingWebhookClientError: No content was provided.');
-        const res = await fetch(`https://discordapp.com/api/webhooks/${this.id}/${this.token}`, {
+        const res = await fetch(`https://discordapp.com/api/webhooks/${this.id}/${this.token}?wait=true`, {
             method: 'POST',
             body: JSON.stringify(content),
             headers: {
                 'Content-Type' : 'application/json'
             }
         });
-        const res2 = await res.json();
-        console.log(res2);
+        console.log(res);
         return res2;
     }
     static parseWebhook(text) {
