@@ -40,9 +40,9 @@ module.exports = class DBLWorker {
             });
         });
 
-        this.app.get(`*`, (req, res) => {
-            res.status(404).send('You are not supposed to be here!');
-        });
+        this.app.use(function (req, res, next) {
+            res.status(404).send("Sorry can't find that!")
+        })
 
         this.app.listen(this.host.port, () => {
             console.log(`Listening on port ${this.host.port}! Your webhook will be on ${this.host.path}. Your auth token is ${this.authentication.dbl}`);
