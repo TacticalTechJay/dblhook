@@ -1,13 +1,15 @@
 {
   "name": "dblhook",
-  "version": "0.0.1",
-  "description": "A dbl webhook, anything else?",
+  "version": "0.0.2",
+  "description": "A top.gg webhook, anything else?",
+  "readmeFilename": "READMEE.md",
   "repository": {
-    "url": "https://github.com/TacticalTechJay/dblhook"
+    "type": "git",
+    "url": "git+https://github.com/TacticalTechJay/dblhook"
   },
-  "main": "index.js",
+  "main": "DBLWorker.js",
   "scripts": {
-    "run": "node index.js"
+    "run": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "webhook"
@@ -15,9 +17,13 @@
   "author": "Jay",
   "license": "ISC",
   "dependencies": {
+    "@sentry/node": "^5.15.4",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "node-fetch": "^2.6.0",
     "typeorm": "^0.2.24"
+  },
+  "devDependencies": {
+    "pg": "^8.2.1"
   }
 }

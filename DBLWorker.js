@@ -5,8 +5,8 @@ const DBLWorkerWebhookClient = require('./DBLWorkerWebhookClient.js');
 const { createConnection, EntitySchema } = require('typeorm');
 
 module.exports = class DBLWorker {
-    constructor(host = { port: 8080, path: '/' }, db = { type: null, host: null, username: null, password: null, database: null }, webhook = { use: false, url: null }, authentication = { bot: null, dbl: null }) {
-        for (const k of Object.keys(db)) if (!db[k]) throw new Error(`DBLWorkerError: options.db.${k} is undefined`);
+    constructor({host = { port: 8080, path: '/' }, database = { type: null, host: null, username: null, password: null, database: null }, webhook = { use: false, url: null }, authentication = { bot: null, dbl: null }}) {
+        for (const k of Object.keys(database)) if (!database[k]) throw new Error(`DBLWorkerError: options.database.${k} is undefined`);
         for (const k of Object.keys(authentication)) if (!authentication[k]) throw new Error(`DBLWorkerError: options.authentication.${k} is undefined`);
         if (webhook.use && !webhook.url) throw new Error(`DBLWorkerError: options.webhook.url is undefined`);
 
@@ -14,14 +14,14 @@ module.exports = class DBLWorker {
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({ extended: true }));
         this.host = host;
-        this.db = db;
+        this.db = database;
         this.webhook = webhook;
         this.authentication = authentication;
         this.init();
         this.routes();
     }
     routes() {
-        this.app.post(this.host.path, async (req, res) => {
+        this.app.post(this.host.path || '/', async (req, res) => {
             if (req.get('Authorization') !== this.authentication.dbl) return res.sendStatus(403);
             setTimeout(async () => {
                 if (req.body.type == 'test') return;
@@ -50,12 +50,12 @@ module.exports = class DBLWorker {
             });
         });
 
-        this.app.use(function (req, res, next) {
+        this.app.use(function (req, res) {
             res.status(404).send("Sorry can't find that!")
         })
 
-        this.app.listen(this.host.port, () => {
-            console.log(`Listening on port ${this.host.port}! Your webhook will be on ${this.host.path}. Your auth token is ${this.authentication.dbl}`);
+        this.app.listen(this.host.port || 8080, () => {
+            console.log(`Listening on port ${this.host.port || '/'}! Your webhook will be on ${this.host.path || '/'}. Your auth token is ${this.authentication.dbl}`);
         })
     }
     async init() {

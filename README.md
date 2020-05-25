@@ -2,7 +2,7 @@
 
 Ditch KSoft.Si and use your own self hosted webhook!
 
-Using this is fairly, all you need is node, npm, a db that works with TypeORM, and most importantly, a discord bot listed on DBL.
+Using this is nearly simple, all you need is node, npm, a database that works with TypeORM, and most importantly, a discord bot listed on [Discord Bot List](https://top.gg "Discord Bots | Discord Bot List").
 
 ## Prerequisites
 
@@ -37,7 +37,11 @@ v13.13.0
 - Microsoft SQL Server
 - MongoDB (Coming soon!)
 
-(check out [this](https://github.com/typeorm/typeorm/blob/master/docs/connection-options.md) for all types, you will need to use a different ORM config later on, view [this](https://github.com/typeorm/typeorm/blob/master/docs/connection-options.md#common-connection-options) for every option, more on this on Database configuration setup step)
+##### (Check out [this](https://github.com/typeorm/typeorm/blob/master/docs/connection-options.md) for all types, you will need to use a different ORM config later on, view [this](https://github.com/typeorm/typeorm/blob/master/docs/connection-options.md#common-connection-options) for every option, more on this on Database configuration setup step)
+
+### An Open Port
+
+You MUST have an open port (80) for this dbl webhook to be used else everything will end up becoming a catastrophic failure.
 
 #### Getting PostgreSQL Drivers
 
@@ -145,6 +149,12 @@ Every single configuration option will be listed here
 | `authentication.bot`     | string | A bot token to use Discord's API for user fetching.                                   |
 | `authentication.dbl`     | string  | A token for the DBL's use to authenticate with the webhook                   |
 
+#### Sentry Config
+
+| Config Property | Type    | Description / Expected Values                          |
+| --------------- | ------- | ------------------------------------------------------ |
+| `Sentry-DSN`    | string  | Used for sentry.io error collecting. Report any errors to me.              |
+
 
 ## Example Config
 
@@ -170,7 +180,8 @@ Every single configuration option will be listed here
     "authentication": {
         "bot": "totally-legit-bot-token",
         "dbl": "totally-legit-auth-token"
-    }
+    },
+    "Sentry-DSN": "https://totallylegit@sentry.link"
 }
 ```
 
