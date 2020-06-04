@@ -8,6 +8,8 @@ module.exports = class DBLWorker {
     constructor({host = { port: 8080, path: '/' }, database = { type: null, host: null, username: null, password: null, database: null }, webhook = { use: false, url: null }, authentication = { bot: null, dbl: null }}) {
         for (const k of Object.keys(database)) if (!database[k]) throw new Error(`DBLWorkerError: options.database.${k} is undefined`);
         for (const k of Object.keys(authentication)) if (!authentication[k]) throw new Error(`DBLWorkerError: options.authentication.${k} is undefined`);
+        for (const k of Object.keys(host)) if (!host[k]) throw new Error(`DBLWorkerError: options.host.${k} is undefined`);
+        for (const k of Object.keys(webhook)) if (!webhook[k]) throw new Error(`DBLWorkerError: options.webhook.${k} is undefined`);
         if (webhook.use && !webhook.url) throw new Error(`DBLWorkerError: options.webhook.url is undefined`);
 
         this.app = express();
