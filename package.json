@@ -1,13 +1,20 @@
 {
   "name": "dblhook",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "A top.gg webhook, anything else?",
   "readmeFilename": "READMEE.md",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TacticalTechJay/dblhook"
   },
-  "files": ["READMEE.md", "package.json", "package-lock.json", "DBLWorker.js", "DBLWorkerWebhookClient.js", "util/*"],
+  "files": [
+    "READMEE.md",
+    "package.json",
+    "package-lock.json",
+    "DBLWorker.js",
+    "DBLWorkerWebhookClient.js",
+    "util/*"
+  ],
   "main": "DBLWorker.js",
   "scripts": {
     "run": "echo \"Error: no test specified\" && exit 1"
