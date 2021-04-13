@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+const fetch = require('petitio')
 
 module.exports = class DBLWorkerWebhookClient {
     constructor(url = null, token = null) {
@@ -9,13 +9,8 @@ module.exports = class DBLWorkerWebhookClient {
     }
     async send(content = null) {
         if (!content) throw new Error('DBLWorkingWebhookClientError: No content was provided.');
-        const res = await fetch(`https://discordapp.com/api/webhooks/${this.id}/${this.token}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type' : 'application/json'
-            },
-            body: JSON.stringify(content)
-        });
+	if (content.length > 2000) throw new Error('DBLWorkingWebhookClientError: Longer than 2000 chars.')
+        const res = await fetch(`https://discordapp.com/api/webhooks/${this.id}/${this.token}`, 'POST').body({ content: JSON.stringify(content) }).send()
         return res;
     }
     static parseWebhook(text) {
