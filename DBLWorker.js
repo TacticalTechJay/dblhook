@@ -56,6 +56,8 @@ module.exports = class DBLWorker {
                 content: `${us ? `${us.username}#${us.discriminator} (${us.id})` : req.body.user} has voted! Yay! :D`,
                 username: "Top.gg Upvotes"
             });
+            res.writeHead(200);
+            res.end('ok');
         });
 
         this.app.listen(this.host.port || 8080, () => {
