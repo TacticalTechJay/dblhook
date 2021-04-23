@@ -32,6 +32,7 @@ module.exports = class DBLWorker {
                 } catch (err) {
                     res.writeHead(400);
                     res.end(`DBLWorkerError: ${err.message}`)
+                    throw new Error(`DBLWorkerError: ${err.message}`);
                 }
             });
             setTimeout(async () => {
