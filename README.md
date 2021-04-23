@@ -72,6 +72,4 @@ new Hooker({
     }
 });
 ```
-You can then let it run its course although I suggest that you use this as its own process.
-
-**__NOTE: YOU MUST HAVE PORT 80 OR CUSTOM PORT OPEN. IF THE PORT IS NOT AVAILABLE, EVERYTHING WILL END UP AS A CATASTROPHIC FAILURE LIKE YOU.__**
+You can then let it run side-by-side with your discord bot although, I suggest that you use this as its own process.
